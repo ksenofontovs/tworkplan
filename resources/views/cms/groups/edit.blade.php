@@ -11,6 +11,10 @@
                 'url' => route('cms.groups.index'),
                 'title' => __('cms.groups.groups'),
             ],
+            [
+                'url' => '',
+                'title' => __('cms.edit'),
+            ],
         ];
     @endphp
     @include('cms.blocks.breadcrumbs.index', ['breadcrumbs' => $breadcrumbs])

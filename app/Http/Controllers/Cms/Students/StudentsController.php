@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Cms\Students;
 use App\Http\Controllers\Cms\Students\Requests\StoreStudentRequest;
 use App\Http\Controllers\Cms\Students\Requests\UpdateStudentRequest;
 use App\Models\Student;
-use App\Services\Groups\GroupsService;
-use App\Services\Groups\Handlers\CreateGroupHandler;
-use App\Services\Groups\Repositories\EloquentGroupRepository;
 use App\Services\Students\StudentsService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,10 +31,6 @@ class StudentsController extends Controller
 
     public function create()
     {
-        $groupsService = new GroupsService(new EloquentGroupRepository());
-        View::share([
-            'groups' => $groupsService->selectAll(),
-        ]);
         return view('cms.students.create');
     }
 

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\Disciplines\Repositories\DisciplineRepositoryInterface;
+use App\Services\Disciplines\Repositories\EloquentDisciplineRepository;
 use App\Services\Groups\Repositories\EloquentGroupRepository;
 use App\Services\Groups\Repositories\GroupRepositoryInterface;
 use App\Services\Students\Repositories\EloquentStudentRepository;
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(GroupRepositoryInterface::class, EloquentGroupRepository::class);
         $this->app->bind(StudentRepositoryInterface::class, EloquentStudentRepository::class);
+        $this->app->bind(DisciplineRepositoryInterface::class, EloquentDisciplineRepository::class);
     }
 
     /**

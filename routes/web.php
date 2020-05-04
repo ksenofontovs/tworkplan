@@ -23,16 +23,10 @@ Route::group([
     ],
 ], function () {
     Route::resource('groups', 'Cms\Groups\GroupsController');
+    Route::resource('students', 'Cms\Students\StudentsController');
+    Route::resource('disciplines', 'Cms\Disciplines\DisciplinesController');
+    Route::resource('semesters', 'Cms\Semesters\SemestersController');
 });
 
-Route::group([
-    'as' => 'cms.',
-    'prefix' => 'cms',
-    'middleware' => [
-        'auth',
-    ],
-], function () {
-    Route::resource('students', 'Cms\Students\StudentsController');
-});
 
 Route::get('/', 'HomeController@index')->name('home');

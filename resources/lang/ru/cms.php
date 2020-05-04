@@ -7,6 +7,7 @@ return [
     'update' => 'Обновить',
     'save' => 'Сохранить',
     'groups' => [
+        'group' => 'Группа',
         'groups' => 'Группы',
         'specialization' => 'Специализация',
         'level' => 'Направление подготовки',
@@ -17,6 +18,7 @@ return [
         'year' => 'Год поступления',
     ],
     'students' => [
+        'student' => 'Студент',
         'students' => 'Студенты',
         'name' => 'ФИО',
         'group' => 'Группа',
@@ -26,4 +28,12 @@ return [
             \App\Models\Student::SUBGROUP_B => 'B',
         ],
     ],
+    'disciplines' => [
+        'discipline' => 'Дисциплина',
+        'disciplines' => 'Дисциплины',
+    ],
+    'semesters' => [
+        'semesters' => 'Семестры',
+        'semester' => 'Семестр',
+    ]
 ];

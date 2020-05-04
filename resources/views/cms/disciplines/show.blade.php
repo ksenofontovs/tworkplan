@@ -8,16 +8,11 @@
                 'title' => __('cms.cms'),
             ],
             [
-                'url' => route('cms.students.index'),
-                'title' => __('cms.students.students'),
-            ],
-            [
-                'url' => '',
-                'title' => __('cms.edit'),
+                'url' => route('cms.disciplines.index'),
+                'title' => __('cms.disciplines.disciplines'),
             ],
         ];
     @endphp
     @include('cms.blocks.breadcrumbs.index', ['breadcrumbs' => $breadcrumbs])
-    @include('cms.students.blocks.header.edit')
-    @include('cms.students.blocks.form.edit')
+    @include('cms.disciplines.blocks.show.index')
 @endsection

@@ -40,6 +40,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('cms.groups.index') }}">{{ __('cms.groups.groups') }}</a>
                                 <a class="dropdown-item" href="{{ route('cms.students.index') }}">{{ __('cms.students.students') }}</a>
+                                <a class="dropdown-item" href="{{ route('cms.disciplines.index') }}">{{ __('cms.disciplines.disciplines') }}</a>
+                                <a class="dropdown-item" href="{{ route('cms.semesters.index') }}">{{ __('cms.semesters.semesters') }}</a>
                             </div>
                         </li>
                     </ul>
