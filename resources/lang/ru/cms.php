@@ -35,5 +35,7 @@ return [
     'semesters' => [
         'semesters' => 'Семестры',
         'semester' => 'Семестр',
+        'date_start' => 'Дата начала',
+        'date_end' => 'Дата окончания',
     ]
 ];
