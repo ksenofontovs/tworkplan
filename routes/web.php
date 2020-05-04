@@ -13,10 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group([
+    'as' => 'cms.',
+    'prefix' => 'cms',
+    'middleware' => [
+        'auth',
+    ],
+], function () {
+    Route::resource('groups', 'Cms\Groups\GroupsController');
+});
+
+Route::group([
+    'as' => 'cms.',
+    'prefix' => 'cms',
+    'middleware' => [
+        'auth',
+    ],
+], function () {
+    Route::resource('students', 'Cms\Students\StudentsController');
+});
+
+Route::get('/', 'HomeController@index')->name('home');
