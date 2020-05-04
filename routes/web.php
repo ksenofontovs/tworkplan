@@ -26,6 +26,7 @@ Route::group([
     Route::resource('students', 'Cms\Students\StudentsController');
     Route::resource('disciplines', 'Cms\Disciplines\DisciplinesController');
     Route::resource('semesters', 'Cms\Semesters\SemestersController');
+    Route::resource('schedules', 'Cms\Schedules\SchedulesController');
 });
 
 

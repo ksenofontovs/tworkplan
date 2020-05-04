@@ -23,8 +23,10 @@ class CreateLessonTypesTable extends Migration
         DB::table('lesson_types')->insert(
             [
                 ['title' => 'Лекция', 'created_at' => date('c'), 'updated_at'=> date('c')],
-                ['title' => 'Практика', 'created_at' => date('c'), 'updated_at'=> date('c')],
+                ['title' => 'Практическое занятие', 'created_at' => date('c'), 'updated_at'=> date('c')],
+                ['title' => 'Зачет', 'created_at' => date('c'), 'updated_at'=> date('c')],
                 ['title' => 'Экзамен', 'created_at' => date('c'), 'updated_at'=> date('c')],
+                ['title' => 'Прочие виды работ', 'created_at' => date('c'), 'updated_at'=> date('c')],
             ]
         );
     }

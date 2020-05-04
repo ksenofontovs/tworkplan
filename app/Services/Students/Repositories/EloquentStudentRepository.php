@@ -17,9 +17,11 @@ class EloquentStudentRepository implements StudentRepositoryInterface
     {
         $student = (new Student)->newQuery();
         if ($request->has('group_id')) {
-            $student->whereGroupId($request->input('group_id'));
+            $student->whereGroupId($request->input('group_id'))->orderBy('name', 'asc');
+        } else {
+            $student->orderBy('group_id', 'desc')->orderBy('name', 'asc');
         }
-        return $student->orderBy('group_id', 'desc')->paginate(15);
+        return $student->paginate(15);
     }
 
     public function createFromArray(array $data): Student

@@ -6,6 +6,8 @@ use App\Services\Disciplines\Repositories\DisciplineRepositoryInterface;
 use App\Services\Disciplines\Repositories\EloquentDisciplineRepository;
 use App\Services\Groups\Repositories\EloquentGroupRepository;
 use App\Services\Groups\Repositories\GroupRepositoryInterface;
+use App\Services\Schedules\Repositories\EloquentScheduleRepository;
+use App\Services\Schedules\Repositories\ScheduleRepositoryInterface;
 use App\Services\Semesters\Repositories\EloquentSemesterRepository;
 use App\Services\Semesters\Repositories\SemesterRepositoryInterface;
 use App\Services\Students\Repositories\EloquentStudentRepository;
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StudentRepositoryInterface::class, EloquentStudentRepository::class);
         $this->app->bind(DisciplineRepositoryInterface::class, EloquentDisciplineRepository::class);
         $this->app->bind(SemesterRepositoryInterface::class, EloquentSemesterRepository::class);
+        $this->app->bind(ScheduleRepositoryInterface::class, EloquentScheduleRepository::class);
     }
 
     /**

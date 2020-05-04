@@ -17,8 +17,8 @@
     <div class="form-group col-md-6">
         @php
             $levels = [
-                \App\Models\Group::LEVEL1 => __('cms.groups.levels.' . \App\Models\Group::LEVEL1),
-                \App\Models\Group::LEVEL2 => __('cms.groups.levels.' . \App\Models\Group::LEVEL2),
+                \App\Models\Group::LEVEL_SPO => __('cms.groups.levels.' . \App\Models\Group::LEVEL_SPO),
+                \App\Models\Group::LEVEL_VPO => __('cms.groups.levels.' . \App\Models\Group::LEVEL_VPO),
             ];
         @endphp
         {{ Form::label('level', __('cms.groups.level')) }}
@@ -30,5 +30,6 @@
     <div class="form-group col-md-12">
         {{ Form::label('year', __('cms.groups.year')) }}
         {{ Form::text('year', null, ['class' => 'form-control']) }}
+        {{ Form::text('title', null, ['class' => 'form-control', 'hidden']) }}
     </div>
 </div>

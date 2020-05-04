@@ -42,6 +42,7 @@
                                 <a class="dropdown-item" href="{{ route('cms.students.index') }}">{{ __('cms.students.students') }}</a>
                                 <a class="dropdown-item" href="{{ route('cms.disciplines.index') }}">{{ __('cms.disciplines.disciplines') }}</a>
                                 <a class="dropdown-item" href="{{ route('cms.semesters.index') }}">{{ __('cms.semesters.semesters') }}</a>
+                                <a class="dropdown-item" href="{{ route('cms.schedules.index') }}">{{ __('cms.schedules.schedules') }}</a>
                             </div>
                         </li>
                     </ul>
@@ -82,7 +83,7 @@
             </div>
         </nav>
 
-        <main class="py-4 container">
+        <main class="py-4 container-fluid">
             @if(Session::has('message'))
                 <div class="alert alert-success">
                     {{ Session::get('message') }}

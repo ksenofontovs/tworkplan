@@ -6,14 +6,18 @@ return [
     'edit' => 'Редактировать',
     'update' => 'Обновить',
     'save' => 'Сохранить',
+    'user' => 'Преподаватель',
+    'all' => 'Все',
     'groups' => [
         'group' => 'Группа',
         'groups' => 'Группы',
         'specialization' => 'Специализация',
         'level' => 'Направление подготовки',
         'levels' => [
-            \App\Models\Group::LEVEL1 => 'СПО',
-            \App\Models\Group::LEVEL2 => 'ВПО'
+            0 => '-',
+            null => '-',
+            \App\Models\Group::LEVEL_SPO => 'СПО',
+            \App\Models\Group::LEVEL_VPO => 'ВПО'
         ],
         'year' => 'Год поступления',
     ],
@@ -24,6 +28,8 @@ return [
         'group' => 'Группа',
         'subgroup' => 'Подруппа',
         'subgroups' => [
+            0 => '-',
+            null => '-',
             \App\Models\Student::SUBGROUP_A => 'A',
             \App\Models\Student::SUBGROUP_B => 'B',
         ],
@@ -37,5 +43,33 @@ return [
         'semester' => 'Семестр',
         'date_start' => 'Дата начала',
         'date_end' => 'Дата окончания',
-    ]
+    ],
+    'schedules' => [
+        'schedules' => 'Расписание',
+    ],
+    'lesson_type' => 'Тип занятия',
+    'odd_even' => 'Четный\Нечетный',
+    'odd_evens' => [
+        0 => '-',
+        null => '-',
+        \App\Models\Schedule::LESSON_EVEN => 'Четный',
+        \App\Models\Schedule::LESSON_ODD => 'Нечетный',
+    ],
+    'half_lesson' => 'Полпары',
+    'half_lessons' => [
+        0 => '-',
+        null => '-',
+        \App\Models\Schedule::LESSON_HALF_FIRST => 'Первая половина',
+        \App\Models\Schedule::LESSON_HALF_SECOND => 'Вторая половина',
+    ],
+    'lesson_day' => 'День',
+    'lesson_time' => 'Время',
+    'audience' => 'Аудитория',
+    'type_load' => 'Вид нагрузки',
+    'type_loads' => [
+        0 => '-',
+        null => '-',
+        \App\Models\Schedule::TYPE_LOAD_BASIC => 'Основная',
+        \App\Models\Schedule::TYPE_LOAD_HOUR => 'Почасовая',
+    ],
 ];

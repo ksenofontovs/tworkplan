@@ -16,7 +16,7 @@ $factory->define(Schedule::class, function (Faker $faker) {
         'group_id' => $groupId,
         'discipline_id' => $disciplineId,
         'lesson_type_id' => $lessonTypeId,
-        'odd_even_id' => 0,
+        'odd_even' => 0,
         'half_lesson' => 0,
         'semester_id' => $semesterId,
         'lesson_day_id' => $lessonDayId,

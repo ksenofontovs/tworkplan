@@ -20,8 +20,8 @@
     <div class="form-group col-md-6">
         @php
             $subgroup = [
-                \App\Models\Group::LEVEL1 => __('cms.groups.levels.' . \App\Models\Group::LEVEL1),
-                \App\Models\Group::LEVEL2 => __('cms.groups.levels.' . \App\Models\Group::LEVEL2),
+                \App\Models\Group::LEVEL_SPO => __('cms.groups.levels.' . \App\Models\Group::LEVEL_SPO),
+                \App\Models\Group::LEVEL_VPO => __('cms.groups.levels.' . \App\Models\Group::LEVEL_VPO),
             ];
         @endphp
         {{ Form::label('level', __('cms.groups.level')) }}

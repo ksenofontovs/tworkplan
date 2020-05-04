@@ -7,15 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
 
-    const LEVEL1 = 1; // СПО
-    const LEVEL2 = 2; // ВПО
+    const LEVEL_SPO = 1; // СПО
+    const LEVEL_VPO = 2; // ВПО
+
+    public static array $levels = [
+        1 => 'СПО',
+        2 => 'ВПО',
+    ];
 
     protected $fillable = [
-        'specialization', 'level', 'year',
+        'specialization', 'level', 'year', 'title',
     ];
 
     public function students()
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $this->specialization .' ' . $this->year . ' ' . self::$levels[$this->level];
     }
 }
