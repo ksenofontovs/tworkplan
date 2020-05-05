@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Cms\Semesters;
 
 use App\Http\Controllers\Cms\Semesters\Requests\StoreSemesterRequest;
-use App\Http\Controllers\Cms\Semesters\Requests\UpdatesemesterRequest;
+use App\Http\Controllers\Cms\Semesters\Requests\UpdateSemesterRequest;
 use App\Models\Semester;
 use App\Services\Semesters\SemestersService;
 use Illuminate\Http\Request;
@@ -56,7 +56,7 @@ class SemestersController extends Controller
         return view('cms.semesters.edit');
     }
 
-    public function update(UpdatesemesterRequest $request, Semester $semester)
+    public function update(UpdateSemesterRequest $request, Semester $semester)
     {
         $this->semestersService->update($semester, $request->getFormData());
         return redirect()->route('cms.semesters.index')->with('message', 'Семестр успешно сохранен.');

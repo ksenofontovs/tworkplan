@@ -4,4 +4,6 @@
     @each('cms.schedules.blocks.list.item', $schedules, 'schedule')
     </tbody>
 </table>
-{{ $schedules->appends(request()->input())->links() }}
+@if ($schedules instanceof \Illuminate\Contracts\Pagination\LengthAwarePaginator)
+    {{ $schedules->appends(request()->input())->links() }}
+@endif
