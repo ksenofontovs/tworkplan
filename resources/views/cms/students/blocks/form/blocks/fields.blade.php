@@ -20,7 +20,7 @@
     @else
         <div class="form-group col-md-6">
             {{ Form::label('group_id', __('cms.students.group')) }}
-            {{ Form::text('group_id', null, ['class' => 'form-control', 'disabled']) }}
+            {{ Form::text('group_id', $student->group()->first()->title, ['class' => 'form-control', 'disabled']) }}
         </div>
     @endif
 

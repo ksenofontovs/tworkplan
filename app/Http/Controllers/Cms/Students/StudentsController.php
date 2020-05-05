@@ -37,7 +37,7 @@ class StudentsController extends Controller
     public function store(StoreStudentRequest $request)
     {
         $this->studentsService->create($request->getFormData());
-        return redirect()->route('cms.students.index')->with('message', 'Студент успешно добавлен.');
+        return redirect()->route('cms.students.index', ['group_id' => $request->input('group_id')])->with('message', 'Студент успешно добавлен.');
     }
 
     public function show(Student $student)
@@ -59,7 +59,7 @@ class StudentsController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
         $this->studentsService->update($student, $request->getFormData());
-        return redirect()->route('cms.students.index')->with('message', 'Студент успешно сохранен.');
+        return redirect()->route('cms.students.index', ['group_id' => $student->group_id])->with('message', 'Студент успешно сохранен.');
     }
 
     public function destroy(Student $student)
