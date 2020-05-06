@@ -7,7 +7,7 @@
     <td>{{ $schedule->discipline()->first()->title }}</td>
     <td>{{ $schedule->lessonType()->first()->title }}</td>
     <td>@lang('cms.odd_evens.' . $schedule->odd_even)</td>
-    <td>@lang('cms.half_lessons.' . $schedule->odd_even)</td>
+    <td>@lang('cms.half_lessons.' . $schedule->half_lesson)</td>
     <td>{{ $schedule->semester()->first()->date_start }} - {{ $schedule->semester()->first()->date_end }}</td>
     <td>{{ $schedule->lessonDay()->first()->title }}</td>
     <td>{{ $schedule->lessonTime()->first()->time_start }} - {{ $schedule->lessonTime()->first()->time_end }}</td>

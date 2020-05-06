@@ -19,7 +19,7 @@
                 @endif
 
                 @if ($schedules)
-                    @include('cms.schedules.blocks.list.index')
+                    @include('cms.schedules.blocks.mainlist.index')
                 @endif
             </div>
         </div>
