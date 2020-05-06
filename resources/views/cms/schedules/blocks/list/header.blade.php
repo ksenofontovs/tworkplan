@@ -6,7 +6,7 @@
     <th scope="col">@lang('cms.students.subgroup')</th>
     <th scope="col">@lang('cms.disciplines.discipline')</th>
     <th scope="col">@lang('cms.lesson_type')</th>
-    <th scope="col">@lang('cms.odd_even')</th>
+    <th scope="col">@lang('cms.even_odd')</th>
     <th scope="col">@lang('cms.half_lesson')</th>
     <th scope="col">@lang('cms.semesters.semester')</th>
     <th scope="col">@lang('cms.lesson_day')</th>

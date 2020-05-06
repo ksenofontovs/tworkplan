@@ -41,13 +41,13 @@
     @php
         $evenOdd = [
             0 => __('cms.all'),
-            \App\Models\Schedule::LESSON_EVEN => __('cms.odd_evens.' . \App\Models\Schedule::LESSON_EVEN),
-            \App\Models\Schedule::LESSON_ODD => __('cms.odd_evens.' . \App\Models\Schedule::LESSON_ODD),
+            \App\Models\Schedule::LESSON_EVEN => __('cms.even_odds.' . \App\Models\Schedule::LESSON_EVEN),
+            \App\Models\Schedule::LESSON_ODD => __('cms.even_odds.' . \App\Models\Schedule::LESSON_ODD),
         ];
     @endphp
     <div class="form-group col-md-6">
-        {{ Form::label('odd_even', __('cms.odd_even')) }}
-        {{ Form::select('odd_even', $evenOdd, null, ['class' => 'form-control']) }}
+        {{ Form::label('even_odd', __('cms.even_odd')) }}
+        {{ Form::select('even_odd', $evenOdd, null, ['class' => 'form-control']) }}
     </div>
     @php
         $halfLesson = [

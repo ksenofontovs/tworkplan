@@ -20,7 +20,7 @@ class CreateSchedulesTable extends Migration
             $table->unsignedTinyInteger('subgroup')->nullable();
             $table->unsignedBigInteger('discipline_id');
             $table->unsignedBigInteger('lesson_type_id');
-            $table->unsignedBigInteger('odd_even')->default(0);
+            $table->unsignedBigInteger('even_odd')->default(0);
             $table->unsignedBigInteger('half_lesson')->default(0);
             $table->unsignedBigInteger('semester_id');
             $table->unsignedBigInteger('lesson_day_id');
@@ -59,7 +59,7 @@ class CreateSchedulesTable extends Migration
                 ->references('id')
                 ->onDelete('restrict');
 
-            $table->unique(['user_id', 'semester_id', 'lesson_day_id', 'lesson_time_id', 'odd_even', 'half_lesson']);
+            $table->unique(['user_id', 'semester_id', 'lesson_day_id', 'lesson_time_id', 'even_odd', 'half_lesson']);
         });
     }
 

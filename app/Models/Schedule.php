@@ -22,7 +22,7 @@ class Schedule extends Model
         'subgroup',
         'discipline_id',
         'lesson_type_id',
-        'odd_even',
+        'even_odd',
         'half_lesson',
         'semester_id',
         'lesson_day_id',

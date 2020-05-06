@@ -34,7 +34,7 @@ class HomeController extends Controller
                 $evenOdd = [0, 2]; // Все и нечетные
             }
             $schedules = Schedule::whereUserId(\Auth::user()->id)->whereLessonDayId(date('N'))
-                ->whereSemesterId($semester->id)->whereIn('odd_even', $evenOdd)->orderBy('lesson_time_id')->get();
+                ->whereSemesterId($semester->id)->whereIn('even_odd', $evenOdd)->orderBy('lesson_time_id')->get();
         }
         \View::share([
             'semester' => $semester,

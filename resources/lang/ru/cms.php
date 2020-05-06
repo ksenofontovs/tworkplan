@@ -48,8 +48,8 @@ return [
         'schedules' => 'Расписание',
     ],
     'lesson_type' => 'Тип занятия',
-    'odd_even' => 'Четный\Нечетный',
-    'odd_evens' => [
+    'even_odd' => 'Четный\Нечетный',
+    'even_odds' => [
         0 => '-',
         null => '-',
         \App\Models\Schedule::LESSON_EVEN => 'Четный',

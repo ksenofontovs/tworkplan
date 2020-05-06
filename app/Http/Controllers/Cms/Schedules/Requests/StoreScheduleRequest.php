@@ -29,7 +29,7 @@ class StoreScheduleRequest extends FormRequest
             'subgroup' => 'integer',
             'discipline_id' => 'required|integer',
             'lesson_type_id' => 'required|integer',
-            'odd_even' => 'integer',
+            'even_odd' => 'integer',
             'half_lesson' => 'integer',
             'semester_id' => 'required|integer',
             'lesson_day_id' => 'required|integer',
