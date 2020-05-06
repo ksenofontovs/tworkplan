@@ -79,7 +79,7 @@ class SchedulesController extends Controller
     private function viewShareDependence()
     {
         View::share([
-            'groups' => Group::pluck('title', 'id'),
+            'groups' => Group::get()->pluck('title', 'id'),
             'disciplines' => Discipline::get()->pluck('title_level', 'id'),
             'lessonType' => LessonType::pluck('title', 'id'),
             'semesters' => Semester::get()->pluck('dates', 'id'),

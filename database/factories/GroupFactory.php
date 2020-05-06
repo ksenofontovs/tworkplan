@@ -14,6 +14,5 @@ $factory->define(Group::class, function (Faker $faker) {
         'specialization' => $specialization,
         'level' => $level,
         'year' => $year,
-        'title' => $title,
     ];
 });

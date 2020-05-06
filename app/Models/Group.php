@@ -16,7 +16,7 @@ class Group extends Model
     ];
 
     protected $fillable = [
-        'specialization', 'level', 'year', 'title',
+        'specialization', 'level', 'year',
     ];
 
     public function students()
@@ -24,8 +24,10 @@ class Group extends Model
         return $this->hasMany(Student::class);
     }
 
-    public function setTitleAttribute($value)
+    protected $appends = ['title'];
+
+    public function getTitleAttribute()
     {
-        $this->attributes['title'] = $this->specialization .' ' . $this->year . ' ' . self::$levels[$this->level];
+        return $this->specialization . ' ' . $this->year . ' ' . self::$levels[$this->level];
     }
 }

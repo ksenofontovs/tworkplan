@@ -30,6 +30,5 @@
     <div class="form-group col-md-12">
         {{ Form::label('year', __('cms.groups.year')) }}
         {{ Form::text('year', null, ['class' => 'form-control']) }}
-        {{ Form::text('title', null, ['class' => 'form-control', 'hidden']) }}
     </div>
 </div>
