@@ -32,6 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @auth
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdownManager" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -46,6 +47,7 @@
                             </div>
                         </li>
                     </ul>
+                    @endauth
 
                     <ul class="navbar-nav ml-auto navbar-text">
                         Сегодня @php echo date('Y.m.d'); @endphp

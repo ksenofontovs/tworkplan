@@ -23,6 +23,7 @@
     <div class="form-group col-md-6">
         @php
             $subgroup = [
+                0 => '-',
                 \App\Models\Student::SUBGROUP_A => __('cms.students.subgroups.' . \App\Models\Student::SUBGROUP_A),
                 \App\Models\Student::SUBGROUP_B => __('cms.students.subgroups.' . \App\Models\Student::SUBGROUP_B),
             ];
