@@ -25,10 +25,10 @@ class StoreVisitLogRequest extends FormRequest
     {
         return [
             'date' => 'required|date',
-            'student_id' => 'required|integer',
-            'schedule_id' => 'required|integer',
-            'absent' => 'boolean',
-            'mark' => 'integer',
+            'student_id' => 'integer',
+            'schedule_id' => 'integer',
+            'absent.*' => 'boolean',
+            'mark.*' => ['integer', 'nullable', 'regex:/2|3|4|5/'],
         ];
     }
 }

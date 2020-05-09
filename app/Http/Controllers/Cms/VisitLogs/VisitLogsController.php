@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cms\VisitLogs;
 
+use App\Http\Controllers\Cms\VisitLogs\Requests\UpdateVisitLogRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\VisitLog;
@@ -99,9 +100,9 @@ class VisitLogsController extends Controller
         //
     }
 
-    public function update(Request $request, Schedule $schedule)
+    public function update(UpdateVisitLogRequest $request, Schedule $schedule)
     {
-        $filters = $request->getRequestData();
+        $filters = $request->getFormData();
         $this->createOrUpdate($filters, $schedule);
         return redirect()->route('home', ['date' => $filters['date']])->with('message', 'Журнал посещений успешно сохранен.');
     }
@@ -122,11 +123,11 @@ class VisitLogsController extends Controller
             $data = $commonData;
             $data['student_id'] = $student->id;
             $visitLog = $this->visitLogsService->searchOne($data);
-            if (isset($filters['student_absent_' . $student->id])) {
-                $data['absent'] = $filters['student_absent_' . $student->id];
+            if (isset($filters['absent'][$student->id])) {
+                $data['absent'] = $filters['absent'][$student->id];
             }
-            if (isset($filters['student_mark_' . $student->id])) {
-                $data['mark'] = $filters['student_mark_' . $student->id];
+            if (isset($filters['mark'][$student->id])) {
+                $data['mark'] = $filters['mark'][$student->id];
             }
             if ($visitLog) {
                 $this->visitLogsService->update($visitLog, $data);

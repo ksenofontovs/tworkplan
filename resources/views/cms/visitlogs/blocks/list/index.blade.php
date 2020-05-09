@@ -1,5 +1,3 @@
-
-
 {!! Form::open(['route' => ['cms.visitlogs.update', 'schedule' => $schedule->id],
             'onsubmit' => 'return confirm("' . __('cms.save_confirm') . '")']) !!}
 {!! Form::hidden('date', $date) !!}
