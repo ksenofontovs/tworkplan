@@ -26,6 +26,18 @@ class EloquentVisitLogRepository implements VisitLogRepositoryInterface
 
     public function searchOne(array $filters): ?VisitLog
     {
+        $visitLog = $this->searchWhere($filters);
+        return $visitLog->first();
+    }
+
+    public function searchAll(array $filters): Collection
+    {
+        $student = $this->searchWhere($filters);
+        return $student->join('students', 'students.id', '=', 'visit_logs.student_id')->orderBy('students.name')->get();
+    }
+
+    private function searchWhere(array $filters)
+    {
         $visitLog = (new VisitLog)->newQuery();
         if (isset($filters['date'])) {
             $visitLog->whereDate('date', '=', $filters['date']);
@@ -36,7 +48,7 @@ class EloquentVisitLogRepository implements VisitLogRepositoryInterface
         if (isset($filters['schedule_id'])) {
             $visitLog->whereScheduleId($filters['schedule_id']);
         }
-        return $visitLog->first();
+        return $visitLog;
     }
 
     public function createFromArray(array $data): VisitLog

@@ -28,6 +28,7 @@ class VisitLogsController extends Controller
     public function index(Request $request, Schedule $schedule)
     {
         $filters = $request->getRequestData();
+        $this->createOrUpdate($filters, $schedule);
         $date = $filters['date'];
         $timestamp = strtotime($date);
         $date = date('Y-m-d', $timestamp);
@@ -49,12 +50,13 @@ class VisitLogsController extends Controller
             return redirect()->route('home')->withErrors(['Ошибка загрузки журнала посещений.']);
         }
 
-        $params = ['group_id' => $schedule->group_id];
-        if ($schedule->subgroup) {
-            $params['subgroup'] = $schedule->subgroup;
-        }
+        $params = [
+            'group_id' => $schedule->group_id,
+            'schedule_id' => $schedule->id,
+        ];
+
         View::share([
-            'students' => $this->studentsService->searchAll($params),
+            'visitLogs' => $this->visitLogsService->searchAll($params),
         ]);
 
         return view('cms.visitlogs.index')->with('schedule', $schedule)->with('date', $date);
@@ -72,7 +74,40 @@ class VisitLogsController extends Controller
 
     public function store(Request $request, Schedule $schedule)
     {
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\VisitLog  $visitLog
+     * @return \Illuminate\Http\Response
+     */
+    public function show(VisitLog $visitLog)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\VisitLog  $visitLog
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(VisitLog $visitLog)
+    {
+        //
+    }
+
+    public function update(Request $request, Schedule $schedule)
+    {
         $filters = $request->getRequestData();
+        $this->createOrUpdate($filters, $schedule);
+        return redirect()->route('home', ['date' => $filters['date']])->with('message', 'Журнал посещений успешно сохранен.');
+    }
+
+    private function createOrUpdate(array $filters, Schedule $schedule)
+    {
         $date = $filters['date'];
         $params = ['group_id' => $schedule->group_id];
         if ($schedule->subgroup) {
@@ -99,41 +134,6 @@ class VisitLogsController extends Controller
                 $this->visitLogsService->create($data);
             }
         }
-        return redirect()->route('home', ['date' => $date])->with('message', 'Журнал посещений успешно сохранен.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\VisitLog  $visitLog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(VisitLog $visitLog)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\VisitLog  $visitLog
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(VisitLog $visitLog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\VisitLog  $visitLog
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, VisitLog $visitLog)
-    {
-        //
     }
 
     /**

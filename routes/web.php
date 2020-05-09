@@ -28,7 +28,7 @@ Route::group([
     Route::resource('semesters', 'Cms\Semesters\SemestersController');
     Route::resource('schedules', 'Cms\Schedules\SchedulesController')->except('edit', 'update');
     Route::get('visitlogs/{schedule}/index', 'Cms\VisitLogs\VisitLogsController@index')->name('visitlogs.index');
-    Route::post('visitlogs/{schedule}/store', 'Cms\VisitLogs\VisitLogsController@store')->name('visitlogs.store');
+    Route::post('visitlogs/{schedule}/update', 'Cms\VisitLogs\VisitLogsController@update')->name('visitlogs.update');
 
 });
 

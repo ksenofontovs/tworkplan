@@ -4,6 +4,7 @@ namespace App\Services\VisitLogs\Repositories;
 
 use App\Models\VisitLog;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 interface VisitLogRepositoryInterface
 {
@@ -13,6 +14,8 @@ interface VisitLogRepositoryInterface
     public function search(array $filters): LengthAwarePaginator;
 
     public function searchOne(array $filters): ?VisitLog;
+
+    public function searchAll(array $filters): Collection;
 
     public function createFromArray(array $data): VisitLog;
 

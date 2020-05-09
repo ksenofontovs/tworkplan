@@ -30,6 +30,11 @@ class VisitLogsService
         return $this->repository->searchOne($filters);
     }
 
+    public function searchAll(array $filters)
+    {
+        return $this->repository->searchAll($filters);
+    }
+
     public function create(array $data)
     {
         return $this->repository->createFromArray($data);
