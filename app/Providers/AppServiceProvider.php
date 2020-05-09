@@ -12,6 +12,8 @@ use App\Services\Semesters\Repositories\EloquentSemesterRepository;
 use App\Services\Semesters\Repositories\SemesterRepositoryInterface;
 use App\Services\Students\Repositories\EloquentStudentRepository;
 use App\Services\Students\Repositories\StudentRepositoryInterface;
+use App\Services\VisitLogs\Repositories\EloquentVisitLogRepository;
+use App\Services\VisitLogs\Repositories\VisitLogRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DisciplineRepositoryInterface::class, EloquentDisciplineRepository::class);
         $this->app->bind(SemesterRepositoryInterface::class, EloquentSemesterRepository::class);
         $this->app->bind(ScheduleRepositoryInterface::class, EloquentScheduleRepository::class);
+        $this->app->bind(VisitLogRepositoryInterface::class, EloquentVisitLogRepository::class);
     }
 
     /**

@@ -6,7 +6,7 @@ use App\Http\Controllers\Cms\Semesters\Requests\StoreSemesterRequest;
 use App\Http\Controllers\Cms\Semesters\Requests\UpdateSemesterRequest;
 use App\Models\Semester;
 use App\Services\Semesters\SemestersService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
 use View;
 
@@ -23,7 +23,7 @@ class SemestersController extends Controller
     public function index(Request $request)
     {
         View::share([
-            'semesters' => $this->semestersService->search($request),
+            'semesters' => $this->semestersService->search($request->getRequestData()),
         ]);
 
         return view('cms.semesters.index');

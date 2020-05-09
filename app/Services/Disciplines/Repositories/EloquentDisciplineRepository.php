@@ -4,7 +4,6 @@ namespace App\Services\Disciplines\Repositories;
 
 use App\Models\Discipline;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class EloquentDisciplineRepository implements DisciplineRepositoryInterface
 {
@@ -13,7 +12,7 @@ class EloquentDisciplineRepository implements DisciplineRepositoryInterface
         return Discipline::find($id);
     }
 
-    public function search(Request $request): LengthAwarePaginator
+    public function search(array $filters): LengthAwarePaginator
     {
         return Discipline::orderBy('id', 'desc')->paginate(15);
     }

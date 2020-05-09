@@ -14,6 +14,9 @@
     <td>@lang('cms.type_loads.' . $schedule->type_load)</td>
     <td>{{ $schedule->audience }}</td>
     <td>
-        {{ link_to(route('cms.schedules.edit', ['schedule' => $schedule->id]), __('cms.edit')) }}
+        {!! Form::open(['route' => ['cms.schedules.destroy', 'schedule' => $schedule->id], 'method' => 'DELETE',
+            'onsubmit' => 'return confirm("' . __('cms.delete_confirm') . '")']) !!}
+        {!! Form::submit(__('cms.delete'), ['class' => 'btn btn-outline-danger']) !!}
+        {!! Form::close() !!}
     </td>
 </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cms\Groups;
 use App\Http\Controllers\Cms\Groups\Requests\StoreGroupRequest;
 use App\Http\Controllers\Cms\Groups\Requests\UpdateGroupRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 use App\Models\Group;
 use App\Services\Groups\GroupsService;
 use View;
@@ -20,10 +21,10 @@ class GroupsController extends  Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
         View::share([
-            'groups' => $this->groupsService->search([]),
+            'groups' => $this->groupsService->search($request->getRequestData()),
         ]);
 
         return view('cms.groups.index');

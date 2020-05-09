@@ -6,7 +6,7 @@ use App\Http\Controllers\Cms\Disciplines\Requests\StoreDisciplineRequest;
 use App\Http\Controllers\Cms\Disciplines\Requests\UpdateDisciplineRequest;
 use App\Models\Discipline;
 use App\Services\Disciplines\DisciplinesService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
 use View;
 
@@ -23,7 +23,7 @@ class DisciplinesController extends Controller
     public function index(Request $request)
     {
         View::share([
-            'disciplines' => $this->disciplinesService->search($request),
+            'disciplines' => $this->disciplinesService->search($request->getRequestData()),
         ]);
 
         return view('cms.disciplines.index');

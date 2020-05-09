@@ -6,6 +6,9 @@
     <td>{{ $student->group()->first()->title }}</td>
     <td>@lang('cms.students.subgroups.' . $student->subgroup)</td>
     <td>
-        {{ link_to(route('cms.students.edit', ['student' => $student->id]), __('cms.edit')) }}
+        {!! Form::open(['route' => ['cms.students.destroy', 'student' => $student->id], 'method' => 'DELETE',
+            'onsubmit' => 'return confirm("' . __('cms.delete_confirm') . '")']) !!}
+        {!! Form::submit(__('cms.delete'), ['class' => 'btn btn-sm btn-outline-danger']) !!}
+        {!! Form::close() !!}
     </td>
 </tr>

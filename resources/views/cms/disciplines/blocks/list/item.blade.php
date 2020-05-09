@@ -5,6 +5,9 @@
     <td>{{ $discipline->title }}</td>
     <td>@lang('cms.groups.levels.' . $discipline->level)</td>
     <td>
-        {{ link_to(route('cms.disciplines.edit', ['discipline' => $discipline->id]), __('cms.edit')) }}
+        {!! Form::open(['route' => ['cms.disciplines.destroy', 'discipline' => $discipline->id], 'method' => 'DELETE',
+            'onsubmit' => 'return confirm("' . __('cms.delete_confirm') . '")']) !!}
+        {!! Form::submit(__('cms.delete'), ['class' => 'btn btn-sm btn-outline-danger']) !!}
+        {!! Form::close() !!}
     </td>
 </tr>

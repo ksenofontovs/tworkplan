@@ -18,6 +18,8 @@ class CreateSemestersTable extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

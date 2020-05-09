@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Services\Disciplines;
+namespace App\Services\VisitLogs;
 
-use App\Models\Discipline;
-use App\Services\Disciplines\Repositories\DisciplineRepositoryInterface;
+use App\Models\VisitLog;
+use App\Services\VisitLogs\Repositories\VisitLogRepositoryInterface;
 
-class DisciplinesService
+class VisitLogsService
 {
 
-    private DisciplineRepositoryInterface $repository;
+    private VisitLogRepositoryInterface $repository;
 
-    public function __construct(DisciplineRepositoryInterface $repository)
+    public function __construct(VisitLogRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
@@ -25,17 +25,22 @@ class DisciplinesService
         return $this->repository->search($filters);
     }
 
+    public function searchOne(array $filters)
+    {
+        return $this->repository->searchOne($filters);
+    }
+
     public function create(array $data)
     {
         return $this->repository->createFromArray($data);
     }
 
-    public function update(Discipline $model, array $data)
+    public function update(VisitLog $model, array $data)
     {
         return $this->repository->updateFromArray($model, $data);
     }
 
-    public function delete(Discipline $model)
+    public function delete(VisitLog $model)
     {
         return $this->repository->delete($model);
     }

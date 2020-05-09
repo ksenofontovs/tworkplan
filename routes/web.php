@@ -22,11 +22,14 @@ Route::group([
         'auth',
     ],
 ], function () {
-    Route::resource('groups', 'Cms\Groups\GroupsController');
-    Route::resource('students', 'Cms\Students\StudentsController');
-    Route::resource('disciplines', 'Cms\Disciplines\DisciplinesController');
+    Route::resource('groups', 'Cms\Groups\GroupsController')->except('edit', 'update');
+    Route::resource('students', 'Cms\Students\StudentsController')->except('edit', 'update');
+    Route::resource('disciplines', 'Cms\Disciplines\DisciplinesController')->except('edit', 'update');
     Route::resource('semesters', 'Cms\Semesters\SemestersController');
-    Route::resource('schedules', 'Cms\Schedules\SchedulesController');
+    Route::resource('schedules', 'Cms\Schedules\SchedulesController')->except('edit', 'update');
+    Route::get('visitlogs/{schedule}/index', 'Cms\VisitLogs\VisitLogsController@index')->name('visitlogs.index');
+    Route::post('visitlogs/{schedule}/store', 'Cms\VisitLogs\VisitLogsController@store')->name('visitlogs.store');
+
 });
 
 

@@ -21,9 +21,9 @@ class SemestersService
         return $this->repository->find($id);
     }
 
-    public function search(Request $request)
+    public function search(array $filters)
     {
-        return $this->repository->search($request);
+        return $this->repository->search($filters);
     }
 
     public function create(array $data)

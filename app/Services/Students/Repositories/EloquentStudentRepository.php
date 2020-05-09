@@ -4,7 +4,7 @@ namespace App\Services\Students\Repositories;
 
 use App\Models\Student;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class EloquentStudentRepository implements StudentRepositoryInterface
 {
@@ -13,15 +13,30 @@ class EloquentStudentRepository implements StudentRepositoryInterface
         return Student::find($id);
     }
 
-    public function search(Request $request): LengthAwarePaginator
+    public function search(array $filters): LengthAwarePaginator
+    {
+        $student = $this->searchWhere($filters);
+        return $student->paginate(15);
+    }
+
+    public function searchAll(array $filters): Collection
+    {
+        $student = $this->searchWhere($filters);
+        return $student->get();
+    }
+
+    private function searchWhere(array $filters)
     {
         $student = (new Student)->newQuery();
-        if ($request->has('group_id')) {
-            $student->whereGroupId($request->input('group_id'))->orderBy('name', 'asc');
+        if (isset($filters['group_id']) && is_numeric($filters['group_id'])) {
+            $student->whereGroupId($filters['group_id']);
         } else {
-            $student->orderBy('group_id', 'desc')->orderBy('name', 'asc');
+            $student->orderBy('group_id', 'desc');
         }
-        return $student->paginate(15);
+        if (isset($filters['subgroup']) && is_numeric($filters['subgroup'])) {
+            $student->whereSubgroup($filters['subgroup']);
+        }
+        return $student->orderBy('name', 'asc');
     }
 
     public function createFromArray(array $data): Student

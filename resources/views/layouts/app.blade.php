@@ -47,6 +47,10 @@
                         </li>
                     </ul>
 
+                    <ul class="navbar-nav ml-auto navbar-text">
+                        Сегодня @php echo date('Y.m.d'); @endphp
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -82,6 +86,17 @@
                 </div>
             </div>
         </nav>
+
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @foreach ($errors->all() as $error)
+                    <span><p>{{ $error }}</p></span>
+                @endforeach
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
 
         <main class="py-4 container-fluid">
             @if(Session::has('message'))

@@ -6,7 +6,7 @@ use App\Models\Semester;
 use Faker\Generator as Faker;
 
 $factory->define(Semester::class, function (Faker $faker) {
-    $date = $faker->date();
+    $date = $faker->date('Y-m-d', '+1 year');
     $dateEnd = new DateTime($date);
     $dateEnd->add(new DateInterval('P4M'));
     return [

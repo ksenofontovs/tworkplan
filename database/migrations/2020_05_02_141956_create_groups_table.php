@@ -19,6 +19,8 @@ class CreateGroupsTable extends Migration
             $table->string('level');
             $table->year('year');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

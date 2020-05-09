@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Request;
 use App\Models\Schedule;
 use App\Models\Semester;
+use Auth;
+use View;
 
 class HomeController extends Controller
 {
@@ -17,28 +20,32 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $semester = Semester::where('date_start', '<=', date('Y-m-d'))
-            ->where('date_end', '>=', date('Y-m-d'))->first();
+        $filters = $request->getRequestData();
+        $date = date('Y-m-d');
+        $weekNumber = date('W');
+        $dayNumber = date('N');
+        if (isset($filters['date']) && $timestamp = strtotime($filters['date'])) {
+            $date = date('Y-m-d', $timestamp);
+            $weekNumber = date('W', $timestamp);
+            $dayNumber = date('N', $timestamp);
+        }
+        $semester = Semester::where('date_start', '<=', $date)
+            ->where('date_end', '>=', $date)->first();
         if ($semester) {
-            $weekNumner = date('W');
-            if ($weekNumner % 2 === 0) {
+            if ($weekNumber % 2 === 0) {
                 $evenOdd = [0, 1]; // Все и четные
             } else {
                 $evenOdd = [0, 2]; // Все и нечетные
             }
-            $schedules = Schedule::whereUserId(\Auth::user()->id)->whereLessonDayId(date('N'))
+            $schedules = Schedule::whereUserId(Auth::user()->id)->whereLessonDayId($dayNumber)
                 ->whereSemesterId($semester->id)->whereIn('even_odd', $evenOdd)->orderBy('lesson_time_id')->get();
         }
-        \View::share([
+        View::share([
             'semester' => $semester,
             'schedules' => isset($schedules) && count($schedules) ? $schedules : null,
+            'date' => $date,
         ]);
 
         return view('home');

@@ -19,6 +19,8 @@ class CreateLessonTimesTable extends Migration
             $table->time('time_start');
             $table->time('time_end');
             $table->timestamps();
+
+            $table->softDeletes();
         });
 
         DB::table('lesson_times')->insert(

@@ -5,10 +5,17 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                Сегодня @php echo date('Y.m.d'); @endphp
+                <div class="form-group row">
+                    {!! Form::open(['route' => 'home', 'method' => 'get', 'class' => 'form-inline', 'id' => 'home-form']) !!}
+                    {!! Form::label('date', 'Расписание на', ['class' => 'px-2 col-form-label']) !!}
+                    {!! Form::date('date', $date, ['class' => 'form-control', 'id' => 'home-date']) !!}
+                    {!! Form::close() !!}
+
                 @if ($semester)
-                    Семестр c {{ $semester->date_start }} по {{ $semester->date_start }}
+                    <span class="form-inline px-5">Семестр c {{ date('Y.m.d', strtotime($semester->date_start)) }} по {{ date('Y.m.d', strtotime($semester->date_end)) }}
+                    </span>
                 @endif
+                </div>
             </div>
 
             <div class="card-body">

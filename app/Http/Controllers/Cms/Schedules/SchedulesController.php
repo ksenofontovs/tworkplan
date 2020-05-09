@@ -4,15 +4,9 @@ namespace App\Http\Controllers\Cms\Schedules;
 
 use App\Http\Controllers\Cms\Schedules\Requests\StoreScheduleRequest;
 use App\Http\Controllers\Cms\Schedules\Requests\UpdateScheduleRequest;
-use App\Models\Discipline;
-use App\Models\Group;
-use App\Models\LessonDay;
-use App\Models\LessonTime;
-use App\Models\LessonType;
 use App\Models\Schedule;
-use App\Models\Semester;
 use App\Services\Schedules\SchedulesService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
 use View;
 
@@ -29,7 +23,7 @@ class SchedulesController extends Controller
     public function index(Request $request)
     {
         View::share([
-            'schedules' => $this->schedulesService->search($request),
+            'schedules' => $this->schedulesService->search($request->getRequestData()),
         ]);
 
         return view('cms.schedules.index');
@@ -37,7 +31,7 @@ class SchedulesController extends Controller
 
     public function create()
     {
-        $this->viewShareDependence();
+        $this->schedulesService->viewShareDependence();
         return view('cms.schedules.create');
     }
 
@@ -57,7 +51,7 @@ class SchedulesController extends Controller
 
     public function edit(Schedule $schedule)
     {
-        $this->viewShareDependence();
+        $this->schedulesService->viewShareDependence();
         View::share([
             'schedule' => $schedule,
         ]);
@@ -74,17 +68,5 @@ class SchedulesController extends Controller
     {
         $this->schedulesService->delete($schedule);
         return redirect()->route('cms.schedules.index')->with('message', 'Расписание успешно удалено.');
-    }
-
-    private function viewShareDependence()
-    {
-        View::share([
-            'groups' => Group::get()->pluck('title', 'id'),
-            'disciplines' => Discipline::get()->pluck('title_level', 'id'),
-            'lessonType' => LessonType::pluck('title', 'id'),
-            'semesters' => Semester::get()->pluck('dates', 'id'),
-            'lessonDays' => LessonDay::pluck('title', 'id'),
-            'lessonTimes' => LessonTime::get()->pluck('times', 'id'),
-        ]);
     }
 }

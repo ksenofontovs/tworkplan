@@ -6,7 +6,7 @@ use App\Http\Controllers\Cms\Students\Requests\StoreStudentRequest;
 use App\Http\Controllers\Cms\Students\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Services\Students\StudentsService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 use App\Http\Controllers\Controller;
 use View;
 
@@ -23,7 +23,7 @@ class StudentsController extends Controller
     public function index(Request $request)
     {
         View::share([
-            'students' => $this->studentsService->search($request),
+            'students' => $this->studentsService->search($request->getRequestData()),
         ]);
 
         return view('cms.students.index')->with('group_id', $request->input('group_id'));

@@ -4,7 +4,13 @@ namespace App\Services\Schedules;
 
 use App\Models\Schedule;
 use App\Services\Schedules\Repositories\ScheduleRepositoryInterface;
-use Illuminate\Http\Request;
+use App\Models\Discipline;
+use App\Models\Group;
+use App\Models\LessonDay;
+use App\Models\LessonTime;
+use App\Models\LessonType;
+use App\Models\Semester;
+use View;
 
 class SchedulesService
 {
@@ -21,9 +27,9 @@ class SchedulesService
         return $this->repository->find($id);
     }
 
-    public function search(Request $request)
+    public function search(array $filters)
     {
-        return $this->repository->search($request);
+        return $this->repository->search($filters);
     }
 
     public function create(array $data)
@@ -39,6 +45,18 @@ class SchedulesService
     public function delete(Schedule $model)
     {
         return $this->repository->delete($model);
+    }
+
+    public function viewShareDependence()
+    {
+        View::share([
+            'groups' => Group::get()->pluck('title', 'id'),
+            'disciplines' => Discipline::get()->pluck('title_level', 'id'),
+            'lessonType' => LessonType::pluck('title', 'id'),
+            'semesters' => Semester::get()->pluck('dates', 'id'),
+            'lessonDays' => LessonDay::pluck('title', 'id'),
+            'lessonTimes' => LessonTime::get()->pluck('times', 'id'),
+        ]);
     }
 
 }

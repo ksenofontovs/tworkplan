@@ -4,7 +4,6 @@ namespace App\Services\Schedules\Repositories;
 
 use App\Models\Schedule;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class EloquentScheduleRepository implements ScheduleRepositoryInterface
 {
@@ -13,7 +12,7 @@ class EloquentScheduleRepository implements ScheduleRepositoryInterface
         return Schedule::find($id);
     }
 
-    public function search(Request $request): LengthAwarePaginator
+    public function search(array $filters): LengthAwarePaginator
     {
         return Schedule::orderBy('id', 'desc')->paginate(15);
     }

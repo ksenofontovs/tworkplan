@@ -17,7 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('group_id');
-            $table->unsignedTinyInteger('subgroup')->nullable(); // todo или вынести в Groups ?
+            $table->unsignedTinyInteger('subgroup')->nullable();
             $table->timestamps();
 
             $table->softDeletes();

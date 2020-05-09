@@ -4,7 +4,6 @@ namespace App\Services\Students;
 
 use App\Models\Student;
 use App\Services\Students\Repositories\StudentRepositoryInterface;
-use Illuminate\Http\Request;
 
 class StudentsService
 {
@@ -21,9 +20,14 @@ class StudentsService
         return $this->repository->find($id);
     }
 
-    public function search(Request $request)
+    public function search(array $filters)
     {
-        return $this->repository->search($request);
+        return $this->repository->search($filters);
+    }
+
+    public function searchAll(array $filters)
+    {
+        return $this->repository->searchAll($filters);
     }
 
     public function create(array $data)

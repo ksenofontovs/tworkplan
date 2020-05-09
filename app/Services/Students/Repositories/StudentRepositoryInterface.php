@@ -4,14 +4,16 @@ namespace App\Services\Students\Repositories;
 
 use App\Models\Student;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 interface StudentRepositoryInterface
 {
 
     public function find(int $id): ?Student;
 
-    public function search(Request $request): LengthAwarePaginator;
+    public function search(array $filters): LengthAwarePaginator;
+
+    public function searchAll(array $filters): Collection;
 
     public function createFromArray(array $data): Student;
 

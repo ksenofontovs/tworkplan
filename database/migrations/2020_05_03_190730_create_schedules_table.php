@@ -29,6 +29,8 @@ class CreateSchedulesTable extends Migration
             $table->unsignedSmallInteger('audience');
             $table->timestamps();
 
+            $table->softDeletes();
+
             $table->foreign('group_id')
                 ->on('groups')
                 ->references('id')

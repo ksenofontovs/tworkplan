@@ -4,7 +4,6 @@ namespace App\Services\Semesters\Repositories;
 
 use App\Models\Semester;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Http\Request;
 
 class EloquentSemesterRepository implements SemesterRepositoryInterface
 {
@@ -13,7 +12,7 @@ class EloquentSemesterRepository implements SemesterRepositoryInterface
         return Semester::find($id);
     }
 
-    public function search(Request $request): LengthAwarePaginator
+    public function search(array $filters): LengthAwarePaginator
     {
         return Semester::orderBy('id', 'desc')->paginate(15);
     }

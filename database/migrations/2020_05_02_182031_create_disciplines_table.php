@@ -18,6 +18,8 @@ class CreateDisciplinesTable extends Migration
             $table->string('title');
             $table->unsignedTinyInteger('level');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

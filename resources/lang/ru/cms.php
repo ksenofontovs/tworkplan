@@ -6,6 +6,9 @@ return [
     'edit' => 'Редактировать',
     'update' => 'Обновить',
     'save' => 'Сохранить',
+    'save_confirm' => 'Вы действительно хотите сохранить журнал?',
+    'delete' => 'Удалить',
+    'delete_confirm' => 'Вы действительно хотите удалить запись?',
     'user' => 'Преподаватель',
     'all' => 'Все',
     'groups' => [
@@ -71,5 +74,10 @@ return [
         null => '-',
         \App\Models\Schedule::TYPE_LOAD_BASIC => 'Основная',
         \App\Models\Schedule::TYPE_LOAD_HOUR => 'Почасовая',
+    ],
+    'visit_log' => 'Журнал посещений',
+    'visit_logs' => [
+        'absent' => 'Отсутствует',
+        'mark' => 'Оценка',
     ],
 ];
