@@ -28,7 +28,7 @@ class StoreVisitLogRequest extends FormRequest
             'student_id' => 'integer',
             'schedule_id' => 'integer',
             'absent.*' => 'boolean',
-            'mark.*' => ['integer', 'nullable', 'regex:/2|3|4|5/'],
+            'mark.*' => ['integer', 'nullable', 'regex:/^[2-5]{1}$/'],
         ];
     }
 }
