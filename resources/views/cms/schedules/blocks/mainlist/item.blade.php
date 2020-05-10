@@ -11,6 +11,6 @@
     <td>@lang('cms.half_lessons.' . $schedule->half_lesson)</td>
 
     <td>
-        {{ link_to(route('cms.visitlogs.index', ['schedule' => $schedule->id, 'date' => $date]), __('cms.visit_log'), ['class' => 'btn btn-primary']) }}
+        {{ link_to(route('cms.visitlogs.index', ['schedule' => $schedule->id, 'date' => $date]), __('cms.visit_log'), ['class' => 'btn btn-sm btn-primary']) }}
     </td>
 </tr>

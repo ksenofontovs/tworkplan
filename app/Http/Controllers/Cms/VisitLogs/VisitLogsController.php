@@ -54,6 +54,7 @@ class VisitLogsController extends Controller
         $params = [
             'group_id' => $schedule->group_id,
             'schedule_id' => $schedule->id,
+            'date' => $date,
         ];
 
         View::share([

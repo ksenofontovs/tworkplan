@@ -53,7 +53,7 @@ class SchedulesService
             'groups' => Group::get()->pluck('title', 'id'),
             'disciplines' => Discipline::get()->pluck('title_level', 'id'),
             'lessonType' => LessonType::pluck('title', 'id'),
-            'semesters' => Semester::get()->pluck('dates', 'id'),
+            'semesters' => Semester::orderByDesc('date_start')->get()->pluck('dates', 'id'),
             'lessonDays' => LessonDay::pluck('title', 'id'),
             'lessonTimes' => LessonTime::get()->pluck('times', 'id'),
         ]);

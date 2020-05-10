@@ -29,6 +29,8 @@ Route::group([
     Route::resource('schedules', 'Cms\Schedules\SchedulesController')->except('edit', 'update');
     Route::get('visitlogs/{schedule}/index', 'Cms\VisitLogs\VisitLogsController@index')->name('visitlogs.index');
     Route::post('visitlogs/{schedule}/update', 'Cms\VisitLogs\VisitLogsController@update')->name('visitlogs.update');
+    Route::get('reports', 'Cms\Reports\ReportsController@index')->name('reports.index');
+    Route::post('reports/make', 'Cms\Reports\ReportsController@make')->name('reports.make');
 
 });
 

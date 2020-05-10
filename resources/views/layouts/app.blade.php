@@ -33,10 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     @auth
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdownManager" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Управление <span class="caret"></span>
+                                @lang('cms.manage') <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('cms.groups.index') }}">{{ __('cms.groups.groups') }}</a>
@@ -44,6 +44,16 @@
                                 <a class="dropdown-item" href="{{ route('cms.disciplines.index') }}">{{ __('cms.disciplines.disciplines') }}</a>
                                 <a class="dropdown-item" href="{{ route('cms.semesters.index') }}">{{ __('cms.semesters.semesters') }}</a>
                                 <a class="dropdown-item" href="{{ route('cms.schedules.index') }}">{{ __('cms.schedules.schedules') }}</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @lang('cms.report') <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('cms.reports.index') }}">{{ __('cms.reports.visit_and_mark') }}</a>
                             </div>
                         </li>
                     </ul>
