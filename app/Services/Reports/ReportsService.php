@@ -22,12 +22,16 @@ class ReportsService
                 DB::raw('CAST((sum(mark)/count(mark)::float) AS DEC(12,2)) AS average_mark'),
                 DB::raw('sum(CAST(ABSENT AS int) * (CASE WHEN schedules.half_lesson IN (1,2) THEN 1 ELSE 2 END)) as count_absent'),
                 'students.name',
-                DB::raw('SUM((CASE WHEN schedules.half_lesson IN (1,2) THEN 1 ELSE 2 END)) as count')
+                DB::raw('SUM((CASE WHEN schedules.half_lesson IN (1,2) THEN 1 ELSE 2 END)) as count_hours'),
+                DB::raw('COUNT(date) as count')
             )->join('students', 'students.id', '=', 'visit_logs.student_id')
             ->join('schedules', 'schedules.id', '=', 'visit_logs.schedule_id')
+            ->where('date', '>=', $request['date_start'])->where('date', '<=', $request['date_end'])
             ->groupBy('student_id', 'students.name')->orderBy('students.name')->get();
         View::share([
             'reports' => $visitLogs,
+            'dateStart' => $request['date_start'],
+            'dateEnd' => $request['date_end'],
         ]);
     }
 

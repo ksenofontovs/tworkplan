@@ -6,9 +6,19 @@
     <td class="col-3">{{ $report->count_absent }}</td>
     <td class="col-3">
         <div class="progress">
-            <div class="progress-bar bg-success" role="progressbar" style="width: {{ (100 * ($report->count - $report->count_absent)) / $report->count}}%"
-                 aria-valuenow="{{ (100 * ($report->count - $report->count_absent)) / $report->count}}" aria-valuemin="0" aria-valuemax="100">
-                {{ (100 * ($report->count - $report->count_absent)) / $report->count}}%
+            @php
+                $percent = (100 * ($report->count_hours - $report->count_absent)) / $report->count_hours;
+                if ($percent >= 90) {
+                    $color = 'bg-success';
+                } elseif ($percent >= 60) {
+                    $color = 'bg-primary';
+                } else {
+                    $color = 'bg-danger';
+                }
+            @endphp
+            <div class="progress-bar {{ $color }}" role="progressbar" style="width: {{ $percent }}%"
+                 aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100">
+                {{ $percent }}%
             </div>
         </div>
     </td>
