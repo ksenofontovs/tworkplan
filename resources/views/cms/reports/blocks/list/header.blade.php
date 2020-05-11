@@ -1,7 +1,8 @@
 <thead>
-<tr>
-    <th scope="col">@lang('cms.students.name')</th>
-    <th scope="col">@lang('cms.reports.average_mark')</th>
-    <th scope="col">@lang('cms.reports.count_absent')</th>
+<tr class="row">
+    <th scope="col" class="col-3">@lang('cms.students.name')</th>
+    <th scope="col" class="col-3">@lang('cms.reports.average_mark')</th>
+    <th scope="col" class="col-3">@lang('cms.reports.count_absent')</th>
+    <th scope="col" class="col-3">@lang('cms.reports.percent_visit')</th>
 </tr>
 </thead>

@@ -19,9 +19,10 @@ class ReportsService
             ->whereSemesterId($request['semester_id'])->get('id');
         $visitLogs = VisitLog::whereIn('schedule_id', $scheduleIds)
             ->select(
-                DB::raw('sum(mark)/count(mark)::float AS average_mark'),
+                DB::raw('CAST((sum(mark)/count(mark)::float) AS DEC(12,2)) AS average_mark'),
                 DB::raw('sum(CAST(ABSENT AS int) * (CASE WHEN schedules.half_lesson IN (1,2) THEN 1 ELSE 2 END)) as count_absent'),
-                'students.name'
+                'students.name',
+                DB::raw('SUM((CASE WHEN schedules.half_lesson IN (1,2) THEN 1 ELSE 2 END)) as count')
             )->join('students', 'students.id', '=', 'visit_logs.student_id')
             ->join('schedules', 'schedules.id', '=', 'visit_logs.schedule_id')
             ->groupBy('student_id', 'students.name')->orderBy('students.name')->get();

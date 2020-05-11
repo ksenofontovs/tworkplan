@@ -17,6 +17,7 @@ return [
         'visit_and_mark' => 'Посещение и оценки',
         'average_mark' => 'Средняя оценка',
         'count_absent' => 'Количество пропусков(академ. часов)',
+        'percent_visit' => 'Процент посещения',
 
     ],
     'groups' => [

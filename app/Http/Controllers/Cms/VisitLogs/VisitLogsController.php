@@ -29,7 +29,6 @@ class VisitLogsController extends Controller
     public function index(Request $request, Schedule $schedule)
     {
         $filters = $request->getRequestData();
-        $this->createOrUpdate($filters, $schedule);
         $date = $filters['date'];
         $timestamp = strtotime($date);
         $date = date('Y-m-d', $timestamp);
@@ -50,6 +49,7 @@ class VisitLogsController extends Controller
         if (!count($schedules)) {
             return redirect()->route('home')->withErrors(['Ошибка загрузки журнала посещений.']);
         }
+        $this->createOrUpdate($filters, $schedule);
 
         $params = [
             'group_id' => $schedule->group_id,
