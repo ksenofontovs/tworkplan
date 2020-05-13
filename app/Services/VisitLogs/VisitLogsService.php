@@ -2,17 +2,21 @@
 
 namespace App\Services\VisitLogs;
 
+use App\Models\Schedule;
 use App\Models\VisitLog;
+use App\Services\Students\StudentsService;
 use App\Services\VisitLogs\Repositories\VisitLogRepositoryInterface;
 
 class VisitLogsService
 {
 
     private VisitLogRepositoryInterface $repository;
+    private StudentsService $studentsService;
 
-    public function __construct(VisitLogRepositoryInterface $repository)
+    public function __construct(VisitLogRepositoryInterface $repository, StudentsService $studentsService)
     {
         $this->repository = $repository;
+        $this->studentsService = $studentsService;
     }
 
     public function find(int $id)
@@ -35,14 +39,56 @@ class VisitLogsService
         return $this->repository->searchAll($filters);
     }
 
-    public function create(array $data)
+    public function create(array $data, Schedule $schedule)
     {
-        return $this->repository->createFromArray($data);
+        $params = ['group_id' => $schedule->group_id];
+        if ($schedule->subgroup) {
+            $params['subgroup'] = $schedule->subgroup;
+        }
+        $students = $this->studentsService->searchAll($params);
+        $commonData = [
+            'date' => $data['date'],
+            'schedule_id' => $schedule->id,
+        ];
+        foreach ($students as $student) {
+            $params = $commonData;
+            $params['student_id'] = $student->id;
+            $visitLog = $this->searchOne($params);
+            if (!$visitLog) {
+                $this->repository->createFromArray($params);
+            }
+        }
     }
 
-    public function update(VisitLog $model, array $data)
+    public function update(array $data, Schedule $schedule)
     {
-        return $this->repository->updateFromArray($model, $data);
+        $params = ['group_id' => $schedule->group_id];
+        if ($schedule->subgroup) {
+            $params['subgroup'] = $schedule->subgroup;
+        }
+        $students = $this->studentsService->searchAll($params);
+        $commonData = [
+            'date' => $data['date'],
+            'schedule_id' => $schedule->id,
+        ];
+        foreach ($students as $student) {
+            $params = $commonData;
+            $params['student_id'] = $student->id;
+            $visitLog = $this->searchOne($params);
+            if (isset($data['absent'][$student->id])) {
+                $params['absent'] = $data['absent'][$student->id];
+            } else {
+                $params['absent'] = false;
+            }
+            if (isset($data['mark'][$student->id])) {
+                $params['mark'] = $data['mark'][$student->id];
+            } else {
+                $params['mark'] = null;
+            }
+            if ($visitLog) {
+                $this->repository->updateFromArray($visitLog, $params);
+            }
+        }
     }
 
     public function delete(VisitLog $model)

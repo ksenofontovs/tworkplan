@@ -49,7 +49,7 @@ class VisitLogsController extends Controller
         if (!count($schedules)) {
             return redirect()->route('home')->withErrors(['Ошибка загрузки журнала посещений.']);
         }
-        $this->createOrUpdate($filters, $schedule);
+        $this->visitLogsService->create($filters, $schedule);
 
         $params = [
             'group_id' => $schedule->group_id,
@@ -104,38 +104,8 @@ class VisitLogsController extends Controller
     public function update(UpdateVisitLogRequest $request, Schedule $schedule)
     {
         $filters = $request->getFormData();
-        $this->createOrUpdate($filters, $schedule);
+        $this->visitLogsService->update($filters, $schedule);
         return redirect()->route('home', ['date' => $filters['date']])->with('message', 'Журнал посещений успешно сохранен.');
-    }
-
-    private function createOrUpdate(array $filters, Schedule $schedule)
-    {
-        $date = $filters['date'];
-        $params = ['group_id' => $schedule->group_id];
-        if ($schedule->subgroup) {
-            $params['subgroup'] = $schedule->subgroup;
-        }
-        $students = $this->studentsService->searchAll($params);
-        $commonData = [
-            'date' => $date,
-            'schedule_id' => $schedule->id,
-        ];
-        foreach ($students as $student) {
-            $data = $commonData;
-            $data['student_id'] = $student->id;
-            $visitLog = $this->visitLogsService->searchOne($data);
-            if (isset($filters['absent'][$student->id])) {
-                $data['absent'] = $filters['absent'][$student->id];
-            }
-            if (isset($filters['mark'][$student->id])) {
-                $data['mark'] = $filters['mark'][$student->id];
-            }
-            if ($visitLog) {
-                $this->visitLogsService->update($visitLog, $data);
-            } else {
-                $this->visitLogsService->create($data);
-            }
-        }
     }
 
     /**
